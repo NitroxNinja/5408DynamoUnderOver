@@ -5,7 +5,7 @@ If you wanna learn more about this code, then just read this file.
 ## Gallery
 
 - SR450, or Sport Rise 450, is a 3.25" 450 RPM speedster that featured a pneumatic PTO from the drive to power the lift capable of support the 13.5 pounds of robot upon a plastic pole.
-**- Watch matchplay against the haxing team [here](https://youtu.be/mKTZreEQ64Q?si=wILfEzWNuq06jm6s)**
+- **Watch matchplay against the haxing team [here](https://youtu.be/mKTZreEQ64Q?si=wILfEzWNuq06jm6s)**
   
 ![image](https://github.com/user-attachments/assets/d92a282e-b7c0-4da9-9e24-7d60bf641151)
 
