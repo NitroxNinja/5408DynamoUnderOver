@@ -26,4 +26,22 @@ There is an autonomous button selector, that when you run this code, 8 buttons w
 
 If you go to the autonomous function of the code, you may notice that I turn "on" my drivePID, but in my driver code I turn "off" my drivePID. This will be important as you do want your robot to move accurately in autonomous, but you do not want your robot to move against your will (of your controller) in drive control. 
 
+''' 
+    kP = 0.124;
+    //while going forward open the wings to release preload, additionally intake is spinning
+    spinUp(true);
+    wings.open();
+    task::sleep(400);
+    dV = 5.2;
+    dTV = -48;
+    wings.close(); 
+    task::sleep(1600);
+    spinUp(false);
+
+    kP = 0.118;
+    //turn right to align with goal, swipe to avoid touching middle pipe 
+    dV = 5.0; 
+    dTV = 90; 
+    task::sleep(800);
+'''
 
