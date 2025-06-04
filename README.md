@@ -18,23 +18,27 @@ The code has pretty much been cycled since 2020-2024, however there have been so
 
 Every robot is different. Every programmer must optomize their code to different robots, which have different wheelbases, and such. In our particular case, our code is based off measurements of cubits (around 18 inches), for every movement. This was convienient b/c VEX rules only allow an 18" x 18" x 18" robot, thus you can imagine the robot in your head and make measurements and approximations pretty easily, and program/tune autons on the get-go.
 
+## Driver-focused 
+
 There is also very little drive macros and automated tasks. **This is a driver's robot. Not a neat robot.** Everything is raw control and skill. It's supposed to be a **viseral experience to drive one of my robots!** Even my drivetrain uses voltage control instead of PID (but this does come at some consequences such as low torque in both ends of the RPM limits), and features a autolocking drive (most people complain that this may damage the motors, but if you drive properly, it shouldn't). It uses arguably the most difficult to control setting, right hand single-stick arcade, and absolutely no power curves to the thing, just linear pure movement. 
 
 The lifting of the robot auton this pole requires 6 steps that all need to be driven by hand. Deploying the lift mechanism, aligning the standoffs to the pole, engaging the transmission shift fork to the drive, driving forward(which moves the lift up), moving the side stick out of the way, and then compressing the lift. There is no ratchet on the thing, and it simply uses the natural resistance of the motors to hold the robot in on the pole and the forwarded friction.  
 
-## Methodology
+I will admit that just b/c it's hard to control doesn't mean this robot is better than others or that I am a one-of-a-kind drivers. It is just that it's supposed to be engaging, and a little fun. If you can drive my robot, you can drive any other robot. Even if it has curvature drive! 
 
-To adjust the lateral and turning PID, simply go to the kP, kI, and kD and tune accordingly. You can always adjust these values on the go, I think you could make a function to do that or something. 
+## Driver Control Methodology
+
+Driver control functions are located in `opControl.cpp` and functions can be listed in main.h (which isn't on this repo, go check my other repos), and use a right hand single-stick arcade drive, which allows me (the driver) to do other tasks with the left hand. People in countries that drive RHD will find this workable, however most people may find this weird, so they can move it to their left hand. To be honest figuring out macros and other driver widgets is pretty easy,`if, else` and whatnot can be used. 
+
+If you are still learning how to code, I highly recommend watching some videos on control structures, boolean statements, variables, functions, and more basic C++ topics. I have no idea how I taught myself C++ so good luck!
+
+## Autonomous Routine Methodology
+
+To adjust the lateral and turning PID, simply go to the `kP`, `kI`, and `kD` and tune accordingly. You can always adjust these values on the go, I think you could make a function to do that or something. 
 
 There is an autonomous button selector, that when you run this code, 8 buttons will pop up. You can possibly add more but I think 8 is enough. Put your autonomous code into the autonomous function where there are `if` statements with the corresponding function/button. You could make a function to do that but nah. 
 
 If you go to the autonomous function of the code, you may notice that I turn "on" my drivePID, but in my driver code I turn "off" my drivePID. This will be important as you do want your robot to move accurately in autonomous, but you do not want your robot to move against your will (of your controller) in drive control. 
-
-## Driver Control 
-
-Driver control functions are located in opControl.cpp and functions can be listed in main.h (which isn't on this repo, go check my other repos), and use a right hand single-stick arcade drive, which allows me (the driver) to do other tasks with the left hand. People in countries that drive RHD will find this workable, however most people may find this weird, so they can move it to their left hand. To be honest figuring out macros and other driver widgets is pretty easy,`if, else` and whatnot can be used. 
-
-If you are still learning how to code, I highly recommend watching some videos on control structures, boolean statements, variables, functions, and more basic C++ topics. I have no idea how I taught myself C++ so good luck!
 
 ## Autonomous Programming Tips and Remarks
 
