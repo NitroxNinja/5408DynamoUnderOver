@@ -5,12 +5,12 @@ If you wanna learn more about this code, then just read this file.
 ## Gallery
 
 - SR450, or Sport Rise 450, is a 3.25" 450 RPM speedster that featured a pneumatic PTO from the drive to power the lift capable of support the 13.5 pounds of robot upon a plastic pole.
-- Watch matchplay against the haxing team [here](https://youtu.be/mKTZreEQ64Q?si=wILfEzWNuq06jm6s)
-
+**- Watch matchplay against the haxing team [here](https://youtu.be/mKTZreEQ64Q?si=wILfEzWNuq06jm6s)**
+  
 ![image](https://github.com/user-attachments/assets/d92a282e-b7c0-4da9-9e24-7d60bf641151)
 
 - SL360, or Sport LongWheelBase 360, is a 3.25" 360 RPM nimble bot that featured... not a whole lot, but it got to finals so it worked good enough.
-- Watch our [Last State Championship](https://youtu.be/Che-vuls_bU?si=w4gJGpJcniJLJsJx) here!
+- **Watch our [Last State Championship](https://youtu.be/Che-vuls_bU?si=w4gJGpJcniJLJsJx) here!**
 
 ![image](https://github.com/user-attachments/assets/a8ece1cf-10cf-4b6d-bdf8-164ad4f42832)
 
@@ -24,7 +24,7 @@ Every robot is different. Every programmer must optomize their code to different
 
 There is also very little drive macros and automated tasks. **This is a driver's robot. Not a neat robot.** Everything is raw control and skill. It's supposed to be a **viseral experience to drive one of my robots!** Even my drivetrain uses voltage control instead of PID (but this does come at some consequences such as low torque in both ends of the RPM limits), and features a autolocking drive (most people complain that this may damage the motors, but if you drive properly, it shouldn't). It uses arguably the most difficult to control setting, right hand single-stick arcade, and absolutely no power curves to the thing, just linear pure movement. 
 
-The [lifting](https://youtu.be/BxN0FyPUTqo?si=LnW9mewH5NwemBHf) of the robot auton this pole requires 6 steps that all need to be driven by hand. Deploying the lift mechanism, aligning the standoffs to the pole, engaging the transmission shift fork to the drive, driving forward(which moves the lift up), moving the side stick out of the way, and then compressing the lift. There is no ratchet on the thing, and it simply uses the natural resistance of the motors to hold the robot in on the pole and the forwarded friction.  
+The **[lifting](https://youtu.be/BxN0FyPUTqo?si=LnW9mewH5NwemBHf)** of the robot auton this pole requires 6 steps that all need to be driven by hand. Deploying the lift mechanism, aligning the standoffs to the pole, engaging the transmission shift fork to the drive, driving forward(which moves the lift up), moving the side stick out of the way, and then compressing the lift. There is no ratchet on the thing, and it simply uses the natural resistance of the motors to hold the robot in on the pole and the forwarded friction.  
 
 I will admit that just b/c it's hard to control doesn't mean this robot is better than others or that I am a one-of-a-kind drivers. It is just that it's supposed to be engaging, and a little fun. If you can drive my robot, you can drive any other robot. Even if it has curvature drive! 
 
