@@ -16,32 +16,49 @@ If you wanna learn more about this code, then just read this file.
 
 The code has pretty much been cycled since 2020-2024, however there have been some small improvements, as this code does a pretty ok job for the robot in terms of multitasking, and robustness (and ease of code if your experienced enough). It is a raw form of control for the base, simply using IMUs and IMEs, making this code work for a variety of robots who don't have access to fancy expensive sensors (tracking wheels and distance sensors). To start, just copy and paste this code into your editor with all the correct files and header files. 
 
+Every robot is different. Every programmer must optomize their code to different robots, which have different wheelbases, and such. In our particular case, our code is based off measurements of cubits (around 18 inches), for every movement. This was convienient b/c VEX rules only allow an 18" x 18" x 18" robot, thus you can imagine the robot in your head and make measurements and approximations pretty easily, and program/tune autons on the get-go.
+
 ## Methodology
 
 To adjust the lateral and turning PID, simply go to the kP, kI, and kD and tune accordingly. You can always adjust these values on the go, I think you could make a function to do that or something. 
 
-There is an autonomous button selector, that when you run this code, 8 buttons will pop up. You can possibly add more but I think 8 is enough. 
-
-'`dV`' and '`dTV`' are short for "desiredValue" and "desiredTurnValue" respectively. The reason why I named it like this was so that it would be easier for me to input instructions on the go. '`resetDriveSensors`' is a boolean variable, that once is set to true, will reset all the IMEs and IMUs so that you can achieve a new movement from that pose. I will warn you to avoid using `resetDriveSensors` when possible and simply learn how to link movements by connecting the lines of code together, and adjusting the `task::sleep();` values. You can also make a function for to do that or something. Let's take a look at an example of how to do movements: 
+There is an autonomous button selector, that when you run this code, 8 buttons will pop up. You can possibly add more but I think 8 is enough. Put your autonomous code into the autonomous function where there are `if` statements with the corresponding function/button. You could make a function to do that but nah. 
 
 If you go to the autonomous function of the code, you may notice that I turn "on" my drivePID, but in my driver code I turn "off" my drivePID. This will be important as you do want your robot to move accurately in autonomous, but you do not want your robot to move against your will (of your controller) in drive control. 
 
-''' 
-    kP = 0.124;
-    //while going forward open the wings to release preload, additionally intake is spinning
-    spinUp(true);
-    wings.open();
-    task::sleep(400);
-    dV = 5.2;
-    dTV = -48;
-    wings.close(); 
-    task::sleep(1600);
-    spinUp(false);
+## Driver Control 
 
-    kP = 0.118;
+Driver control functions are located in opControl.cpp and functions can be listed in main.h (which isn't on this repo, go check my other repos), and use a right hand single-stick arcade drive, which allows me (the driver) to do other tasks with the left hand. People in countries that drive RHD will find this workable, however most people may find this weird, so they can move it to their left hand. To be honest figuring out macros and other driver widgets is pretty easy,`if, else` and whatnot can be used. 
+
+If you are still learning how to code, I highly recommend watching some videos on control structures, boolean statements, variables, functions, and more basic C++ topics. I have no idea how I taught myself C++ so good luck!
+
+## Autonomous Programming Tips
+
+### i. How to use this code
+'`dV`' and '`dTV`' are short for "desiredValue" and "desiredTurnValue" respectively. The reason why I named it like this was so that it would be easier for me to input instructions on the go. '`resetDriveSensors`' is a boolean variable, that once is set to true, will reset all the IMEs and IMUs so that you can achieve a new movement from that pose. I will warn you to avoid using `resetDriveSensors` when possible and simply learn how to link movements by connecting the lines of code together, and adjusting the `task::sleep();` values. You can also make a function for to do that or something. Let's take a look at an example of how to do movements: 
+
+      kP = 0.124; // adjust kP value for aggression
+    //while going forward open the wings to release preload, additionally intake is spinning
+    spinUp(true); //this function SPINS the intake
+    wings.open(); // this one OPENS the pneumatic wings that are on both sides of the robot
+    task::sleep(400); // the robot is given 400 milliseconds to complete this task before moving onto the next one.
+    dV = 5.2; // the robot will move 5.2 cubits forward 
+    dTV = -48; // AND the robot turns left while going forward
+    wings.close(); // this one CLOSES the pneumatic wings that are on both sides of the robot
+    task::sleep(1600); // the robot is given 1600 milliseconds (1.6 seconds) to complete this task before moving onto the next one
+    spinUp(false); // the robot stops spinning the intake 
+
+    kP = 0.118; //decrease kP value for accuracy and reducing oscillation. 
     //turn right to align with goal, swipe to avoid touching middle pipe 
-    dV = 5.0; 
-    dTV = 90; 
-    task::sleep(800);
-'''
+    dV = 5.0; // the robot backs up 0.2 cubits, because previously dV was 5.2 and now it's 5.0. Thus 5.2-5.0 = 0.2  
+    dTV = 90; // the robot turs 138 degrees to the right b/c it has a pose angle of -48 previously, and now it's 90. 90 - (-48) = 138.
+    task::sleep(800); // the robot is given 800 milliseconds to COMPLETE this turn
+
+This represents the most raw form of control and it often is kind of hard to think about, but once you get the gist of it, you can code super advanced movements without requiring advanced odom or pure pursuit systems. Given that those systems are probably better, but this code presents a challenge to be independent and develop my own solutions to coding. 
+
+### ii. Tips in developing autonomous routines
+Make movements simple. Why go in a curve when you just drive in a straight line? More crazier movements mean more crazier readings from your IMU and IMEs (aka this is called noise). There is a lack of kalman filtering on this system, and you're gonna have to be careful. 
+But you may be asking why the hell would I do that? Well VEX is a very small field, and it doesn't have to dive deep into the real world sh-t of nonlinear systems, and special instrumentation devices. You should be able to go very far based on this code, and create more functions and make my code a WHOLE lot neater to help you simplify your programming. 
+
+
 
